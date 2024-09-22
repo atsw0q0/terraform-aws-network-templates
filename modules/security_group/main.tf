@@ -10,14 +10,14 @@ resource "aws_security_group" "sg" {
   dynamic "ingress" {
     for_each = var.sg.ingress
     content {
-      description     = lookup(ingress.value["description"], "description", "")
+      description     = lookup(ingress.value, "description", "")
       from_port       = ingress.value["from_port"]
       to_port         = ingress.value["to_port"]
       protocol        = ingress.value["protocol"]
-      cidr_blocks     = lookup(ingress.value["cidr_blocks"], "cidr_blocks", null)
-      security_groups = lookup(ingress.value["security_groups"], "security_groups", null)
-      prefix_list_ids = lookup(ingress.value["prefix_list_ids"], "prefix_list_ids", null)
-      self            = lookup(ingress.value["self"], "self", null)
+      cidr_blocks     = lookup(ingress.value, "cidr_blocks", null)
+      security_groups = lookup(ingress.value, "security_groups", null)
+      prefix_list_ids = lookup(ingress.value, "prefix_list_ids", null)
+      self            = lookup(ingress.value, "self", null)
     }
   }
 

@@ -18,6 +18,7 @@ variable "sg" {
       description     = string
       from_port       = number
       to_port         = number
+      protocol        = string
       cidr_blocks     = optional(list(string))
       security_groups = optional(list(string))
       prefix_list_ids = optional(list(string))
@@ -28,6 +29,21 @@ variable "sg" {
     prefix      = "ec2"
     description = "ec2"
     vpc_id      = "vpc_xxxxx"
-    ingress     = {}
+    ingress = {
+      https = {
+        description = "https"
+        from_port   = 443
+        to_port     = 443
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+      http = {
+        description = "http"
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    }
   }
 }
