@@ -7,18 +7,18 @@ output "igw_id" {
 }
 
 output "subnet_pub_ids" {
-  #   value = { for k, v in aws_subnet.pub : k => v.id }
-  value = values(aws_subnet.pub)[*].id
+  value = { for k, v in aws_subnet.pub : k => v.id }
+  #   value = values(aws_subnet.pub)[*].id
 }
 
 output "subnet_pri_ids" {
-  #   value = { for k, v in aws_subnet.pri : k => v.id }
-  value = values(aws_subnet.pri)[*].id
+  value = { for k, v in aws_subnet.pri : k => v.id }
+  #   value = values(aws_subnet.pri)[*].id
 }
 
 output "subnet_edp_ids" {
-  #   value = { for k, v in aws_subnet.edp : k => v.id }
-  value = values(aws_subnet.edp)[*].id
+  value = { for k, v in aws_subnet.edp : k => v.id }
+  #   value = values(aws_subnet.edp)[*].id
 }
 
 output "rtb_pub_id" {
